@@ -1,8 +1,10 @@
-﻿namespace CustomerDatabaseAPI.Server.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace CustomerDatabaseAPI.Server.Models
 {
     public class CustomerAddress
     {
-        public int CustAddressId { get; set; }
+         [Key]  public int CustAddressId { get; set; }
 
         public int CustomerId { get; set; }
 

@@ -1,9 +1,11 @@
-﻿namespace CustomerDatabaseAPI.Server.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace CustomerDatabaseAPI.Server.Models
 {
     public class Email
     {
 
-        public int EmailId { get; set; }
+       [Key] public int EmailId { get; set; }
 
         public int CustomerId { get; set; }
 

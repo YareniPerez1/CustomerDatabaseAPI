@@ -1,12 +1,15 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { CustomerListService } from './customer-list.service';
+import { CustomerListComponent } from './customer-list/customer-list.component';
+import { Customerlist } from './customerlist';
 
-interface WeatherForecast {
-  date: string;
-  temperatureC: number;
-  temperatureF: number;
-  summary: string;
-}
+//interface WeatherForecast {
+//  date: string;
+//  temperatureC: number;
+//  temperatureF: number;
+//  summary: string;
+//}
 
 @Component({
   selector: 'app-root',
@@ -14,24 +17,34 @@ interface WeatherForecast {
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  public forecasts: WeatherForecast[] = [];
+  
 
-  constructor(private http: HttpClient) {}
+  customerlistList: Customerlist[] = [];
+
+  //don't have a customerlist.ts //made one.
+  //all below is needed for CRUD
+  constructor(private customerlist: CustomerListService) { }
+
+  
 
   ngOnInit() {
-    this.getForecasts();
+    /* this.getAllCustomerlist();*/
+    this.customerlist.getAllCustomerlist().subscribe(data => {
+      this.customerlistList = data;
+
+    })
   }
 
-  getForecasts() {
-    this.http.get<WeatherForecast[]>('/weatherforecast').subscribe(
-      (result) => {
-        this.forecasts = result;
-      },
-      (error) => {
-        console.error(error);
-      }
-    );
-  }
+  //getForecasts() {
+  //  this.http.get<WeatherForecast[]>('/weatherforecast').subscribe(
+  //    (result) => {
+  //      this.forecasts = result;
+  //    },
+  //    (error) => {
+  //      console.error(error);
+  //    }
+  //  );
+  //}
 
   title = 'customerdatabaseapi.client';
 }

@@ -1,9 +1,11 @@
-﻿namespace CustomerDatabaseAPI.Server.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace CustomerDatabaseAPI.Server.Models
 {
     public class Phone
     {
 
-        public int PhoneId { get; set; }
+        [Key]  public int PhoneId { get; set; }
 
         public int CustomerID { get; set; }
 

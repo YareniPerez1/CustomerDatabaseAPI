@@ -1,10 +1,12 @@
-﻿namespace CustomerDatabaseAPI.Server.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace CustomerDatabaseAPI.Server.Models
 {
     public class CompanyCallDetails
     {
         //This would hold all details assuming customer answers
         //from a call that  the company made to a customer.
-        public int CallDetailsId { get; set; }
+        [Key]   public int CallDetailsId { get; set; }
 
         public int CallId { get; set; }
 

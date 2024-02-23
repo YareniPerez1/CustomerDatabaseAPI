@@ -1,4 +1,6 @@
-﻿namespace CustomerDatabaseAPI.Server.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace CustomerDatabaseAPI.Server.Models
 {
     public class CompanyCall
     {
@@ -6,7 +8,8 @@
         //to a customer 
 
         //has fk to customer
-        public int CallId { get; set; }
+
+        [Key] public int CallId { get; set; }
 
         public int CustomerId { get; set; }
 

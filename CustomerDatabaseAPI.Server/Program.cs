@@ -1,13 +1,45 @@
+using CustomerDatabaseAPI.Server.Models;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using CustomerDatabaseAPI.Server.Data;
+
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddDbContext<CustomerDatabaseAPIServerContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("CustomerDatabaseAPIServerContext") ?? throw new InvalidOperationException("Connection string 'CustomerDatabaseAPIServerContext' not found.")));
 
 // Add services to the container.
 
 builder.Services.AddControllers();
+//does this add link to db?
+//builder.Services.AddDbContext<AppDBContext>();
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+//SeedData.EnsurePopulated()
+
+
 var app = builder.Build();
+
+//for seed data
+
+using (var scope = app.Services.CreateScope())
+{
+    var services = scope.ServiceProvider;
+
+    try
+    {
+        SeedData.EnsurePopulated(services).Wait();
+    }
+    catch (Exception ex)
+    {
+        //print error message
+        var logger = services.GetRequiredService<ILogger<Program>>();
+
+        logger.LogError(ex, "An error occured seeding the database.");
+    }
+}
 
 app.UseDefaultFiles();
 app.UseStaticFiles();

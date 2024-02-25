@@ -11,14 +11,13 @@ builder.Services.AddDbContext<CustomerDatabaseAPIServerContext>(options =>
 // Add services to the container.
 
 builder.Services.AddControllers();
-//does this add link to db?
-//builder.Services.AddDbContext<AppDBContext>();
+
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-//SeedData.EnsurePopulated()
+
 
 
 var app = builder.Build();

@@ -7,18 +7,12 @@ import { NgModule } from '@angular/core';
 import { NgFor, NgIf } from '@angular/common';
 
 
-//interface WeatherForecast {
-//  date: string;
-//  temperatureC: number;
-//  temperatureF: number;
-//  summary: string;
-//}
+
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
- /* imports: [CustomerListComponent],*/
   template: '<app-customer-list></app-customer-list'
 
 })
@@ -27,7 +21,7 @@ export class AppComponent{
 
   customer: Customer[] = [];
 
-  //don't have a customerlist.ts //made one.
+  
   //all below is needed for CRUD
   constructor(private customerlist: CustomerListService) { }
 
@@ -36,25 +30,16 @@ export class AppComponent{
     this.getAllCustomerlist();
   }
 
- // ngOnInit
+
    getAllCustomerlist () {
-    /* this.getAllCustomerlist();*/
+    
     this.customerlist.getAllCustomerlist().subscribe(data => {
       this.customer = data;
 
     })
   }
 
-  //getForecasts() {
-  //  this.http.get<WeatherForecast[]>('/weatherforecast').subscribe(
-  //    (result) => {
-  //      this.forecasts = result;
-  //    },
-  //    (error) => {
-  //      console.error(error);
-  //    }
-  //  );
-  //}
+ 
 
   title = 'customerdatabaseapi.client';
 }

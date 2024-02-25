@@ -11,7 +11,7 @@ import { Customer } from '../customer';
   selector: 'app-customer-list',
   templateUrl: './customer-list.component.html',
   styleUrl: './customer-list.component.css',
-  /*imports: [NgFor, NgIf]*/
+  
 })
 export class CustomerListComponent implements OnInit {
 
@@ -22,7 +22,7 @@ export class CustomerListComponent implements OnInit {
   ngOnInit(): void {
     this.loadcustomers();
 
-    //this.getAllCustomerlist();
+   
   }
 
   loadcustomers(): void {

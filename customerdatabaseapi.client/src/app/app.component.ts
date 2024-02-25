@@ -2,7 +2,10 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { CustomerListService } from './customer-list.service';
 import { CustomerListComponent } from './customer-list/customer-list.component';
-import { Customerlist } from './customerlist';
+import { Customer } from './customer';
+import { NgModule } from '@angular/core';
+import { NgFor, NgIf } from '@angular/common';
+
 
 //interface WeatherForecast {
 //  date: string;
@@ -14,23 +17,30 @@ import { Customerlist } from './customerlist';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'],
+ /* imports: [CustomerListComponent],*/
+  template: '<app-customer-list></app-customer-list'
+
 })
-export class AppComponent implements OnInit {
+export class AppComponent{
   
 
-  customerlistList: Customerlist[] = [];
+  customer: Customer[] = [];
 
   //don't have a customerlist.ts //made one.
   //all below is needed for CRUD
   constructor(private customerlist: CustomerListService) { }
 
-  
-
   ngOnInit() {
+
+    this.getAllCustomerlist();
+  }
+
+ // ngOnInit
+   getAllCustomerlist () {
     /* this.getAllCustomerlist();*/
     this.customerlist.getAllCustomerlist().subscribe(data => {
-      this.customerlistList = data;
+      this.customer = data;
 
     })
   }

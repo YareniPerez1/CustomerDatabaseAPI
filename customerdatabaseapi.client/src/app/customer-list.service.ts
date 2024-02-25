@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Customerlist } from './customerlist';
+import { Customer } from './customer';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
@@ -12,33 +12,35 @@ export class CustomerListService {
 
   //create
 
-  createCustomerlist(newCustomerlist: Customerlist): Observable<Customerlist> {
+  createCustomerlist(newCustomerlist: Customer): Observable<Customer> {
     //create new customer in database
 
-    return this.http.post<Customerlist>("/api/Customers", newCustomerlist);
+    return this.http.post<Customer>("/api/Customers", newCustomerlist);
 
 
   }
 
 
   //read
-  getAllCustomerlist(): Observable<Customerlist[]>{
+  getAllCustomerlist(): Observable<Customer[]>{
     //get all customers from api
-    return this.http.get<Customerlist[]>("/api/Customers")
+    return this.http.get<Customer[]>("/api/Customers")
 
   }
 
   
 
-  getCustomerlistById(id: number) {
+  getCustomerlistById(id: number) : Observable<Customer>{
     //get a customer by id
+
+    return this.http.get<Customer>("/api/Customers/" + id)
 
   }
 
   //update
-  updateCustomerlist(id: number, newCustomerlist: Customerlist): Observable<Customerlist> {
+  updateCustomerlist(id: number, newCustomerlist: Customer): Observable<Customer> {
 
-    return this.http.put<Customerlist>("/api/Customers/" + id, newCustomerlist);
+    return this.http.put<Customer>("/api/Customers/" + id, newCustomerlist);
 
   }
 

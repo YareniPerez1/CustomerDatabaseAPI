@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Diagnostics.CodeAnalysis;
 
 namespace CustomerDatabaseAPI.Server.Models
 {
@@ -8,7 +9,7 @@ namespace CustomerDatabaseAPI.Server.Models
 
         public string AddressLine1 { get; set; }
 
-        public string AddressLine2 { get; set; }
+       [AllowNull] public string AddressLine2 { get; set; }
 
         public string City { get; set; }
 

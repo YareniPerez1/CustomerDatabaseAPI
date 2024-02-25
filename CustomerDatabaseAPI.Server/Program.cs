@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using CustomerDatabaseAPI.Server.Data;
 
+
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<CustomerDatabaseAPIServerContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("CustomerDatabaseAPIServerContext") ?? throw new InvalidOperationException("Connection string 'CustomerDatabaseAPIServerContext' not found.")));

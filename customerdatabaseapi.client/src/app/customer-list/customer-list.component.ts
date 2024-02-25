@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-//import { CustomerList } from '../customer-list.service';
-//import { Customer } from '../Customer.model';
+import { NgFor, NgIf } from '@angular/common';
+import { CustomerListService } from '../customer-list.service';
+import { Customer } from '../customer';
 
 
 
@@ -9,15 +10,27 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-customer-list',
   templateUrl: './customer-list.component.html',
-  styleUrl: './customer-list.component.css'
+  styleUrl: './customer-list.component.css',
+  /*imports: [NgFor, NgIf]*/
 })
-export class CustomerListComponent {
+export class CustomerListComponent implements OnInit {
 
-  //customers: Customer[] = [];
+  customers: Customer[] = [];
 
-  //constructor(private)
+  constructor(private Customerlistservice: CustomerListService) {}
 
+  ngOnInit(): void {
+    this.loadcustomers();
 
+    //this.getAllCustomerlist();
+  }
+
+  loadcustomers(): void {
+
+    this.Customerlistservice.getAllCustomerlist()
+      .subscribe(customers => this.customers = customers);
+
+  }
   
 
 
